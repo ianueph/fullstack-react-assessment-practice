@@ -1,0 +1,9 @@
+package com.daniel.practicebackend.repository;
+
+import com.daniel.practicebackend.entity.Attendee;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+interface AttendeeRepository extends JpaRepository<Attendee, Long> {
+}

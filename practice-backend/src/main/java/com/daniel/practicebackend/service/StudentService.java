@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class StudentService {
 
@@ -31,6 +33,10 @@ public class StudentService {
                         HttpStatus.NOT_FOUND,
                         String.format("Student with id (%d) not found", id)
                 ));
+    }
+
+    public List<Student> getStudents() {
+        return studentRepository.findAll();
     }
 
     public Student updateStudent(Long id, StudentRequest request) {

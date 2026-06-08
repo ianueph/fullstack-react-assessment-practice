@@ -3,6 +3,9 @@ package com.daniel.practicebackend.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(
+        columnNames = {"event_id", "student_id"}
+))
 public class Attendee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -108,6 +108,40 @@
         }
       );
 
+      packages = forEachSupportedSystem (
+        { pkgs, system }:
+        with pkgs; {
+          backend = maven.buildMavenPackage (finalAttrs: {
+            pname = "practice-backend";
+            version = "0.0.1";
+
+            src = ./practice-backend;
+
+            mvnHash = "sha256-1Yk1PoFEfUfPzAvaivBEXB2NQbGKyccLoi9CPKsPv1g=";
+
+            nativeBuildInputs = [ makeWrapper ];
+
+            doCheck = false;
+
+            installPhase = ''
+              runHook preInstall
+
+              mkdir -p $out/bin $out/share/practice-backend
+              install -Dm644 target/practice-backend-*.jar $out/share/java/practice-backend.jar
+
+              makeWrapper ${jre}/bin/java $out/bin/practice-backend \
+                --add-flags "-jar $out/share/java/practice-backend.jar"
+
+              runHook postInstall
+            '';
+
+            meta = {
+              description = "This is a copy of an old college project, of which it's architecture is used here for practice purposes.";
+            };
+          });
+        }
+      );
+
       formatter = forEachSupportedSystem ({ pkgs, ... }: pkgs.nixfmt);
     };
 }

@@ -139,6 +139,29 @@
               description = "This is a copy of an old college project, of which it's architecture is used here for practice purposes.";
             };
           });
+
+          frontend = buildNpmPackage {
+            pname = "practice-frontend";
+            version = "0.1";
+
+            src = ./practice-frontend/.;
+
+            installPhase = ''
+              mkdir -p $out/share/www $out/bin
+
+              cp -r dist/* $out/share/www
+
+              cat <<EOF > $out/bin/practice-frontend
+              #!/bin/sh
+              echo "Starting Busybox HTTP server at http://localhost:8081 ... "
+              exec ${busybox}/bin/httpd -f -p 8081 -h $out/share/www
+              EOF
+              
+              chmod +x $out/bin/practice-frontend
+            '';
+
+            npmDepsHash = "sha256-wungYJB8jpozzHakyc7zKN7t+WxelK72WQjfcC0Im1M=";
+          };
         }
       );
 

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class EventService {
 
@@ -33,6 +35,10 @@ public class EventService {
                 ));
     }
 
+    public List<Event> getEvents() {
+        return eventRepository.findAll();
+    }
+
     public Event updateEvent(Long id, EventRequest request) {
         Event event = getEvent(id);
         
@@ -46,4 +52,6 @@ public class EventService {
         Event event = getEvent(id);
         eventRepository.delete(event);
     }
+
+
 }

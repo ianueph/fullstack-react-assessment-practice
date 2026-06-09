@@ -95,16 +95,6 @@
               self.formatter.${system}
             ];
           };
-
-          shellHook = ''
-            echo "PostgreSQL database from config $PWD started..."
-          '';
-
-          # postgres server start command
-          # pg_ctl -D database/mydb -l logfile -o "--unix_socket_directories='$PWD'" start
-
-          # postgres stop command
-          # pg_ctl -D database/mydb stop
         }
       );
 

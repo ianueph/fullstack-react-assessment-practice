@@ -1,8 +1,10 @@
 package com.daniel.practicebackend.controller;
 
+import com.daniel.practicebackend.entity.Event;
 import com.daniel.practicebackend.entity.Student;
 import com.daniel.practicebackend.entity.dto.StudentRequest;
 import com.daniel.practicebackend.entity.dto.StudentRequestIds;
+import com.daniel.practicebackend.service.AttendeeService;
 import com.daniel.practicebackend.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +15,11 @@ import java.util.List;
 @RequestMapping("students")
 public class StudentController {
     private final StudentService studentService;
+    private final AttendeeService attendeeService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, AttendeeService attendeeService) {
         this.studentService = studentService;
+        this.attendeeService = attendeeService;
     }
 
     @PostMapping
@@ -36,6 +40,11 @@ public class StudentController {
     @PostMapping("/batch")
     public List<Student> getStudentsById(@RequestBody StudentRequestIds request) {
         return studentService.getStudentsById(request);
+    }
+
+    @GetMapping("/{id}/events")
+    public List<Event> getEventsByStudentId(@PathVariable Long id) {
+        return attendeeService.getEventsByStudentId(id);
     }
 
     @PutMapping("/{id}")

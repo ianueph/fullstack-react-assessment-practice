@@ -47,6 +47,22 @@ public class AttendeeService {
         return attendeeRepository.findAll();
     }
 
+    public List<Student> getStudentsByEventId(Long eventId) {
+        return attendeeRepository
+                .getAttendeesByEvent_Id(eventId)
+                .stream()
+                .map(Attendee::getStudent)
+                .toList();
+    }
+
+    public List<Event> getEventsByStudentId(Long studentId) {
+        return attendeeRepository
+                .getAttendeesByStudent_Id(studentId)
+                .stream()
+                .map(Attendee::getEvent)
+                .toList();
+    }
+
     public void deleteAttendee(Long id) {
         attendeeRepository.delete(getAttendee(id));
     }

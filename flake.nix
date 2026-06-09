@@ -107,7 +107,7 @@
 
             src = ./practice-backend;
 
-            mvnHash = "sha256-1Yk1PoFEfUfPzAvaivBEXB2NQbGKyccLoi9CPKsPv1g=";
+            mvnHash = "sha256-UJltvajRLu5qTQMAudrN2WRioDPIx2dULKXNM4M532Y=";
 
             nativeBuildInputs = [ makeWrapper ];
 

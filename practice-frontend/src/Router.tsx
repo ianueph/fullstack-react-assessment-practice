@@ -10,11 +10,27 @@ const router = createBrowserRouter([
   },
   {
     path: "events",
-    element: <Events />
+    element: <Events />,
+    //children: [
+    //  {
+    //    path: "attendees",
+    //    element: <EventAttendees />
+    //  }
+    //]
   },
   {
     path: "students",
-    element: <Students />
+    element: <Students />,
+    //children: [
+    //  {
+    //    path: "attended",
+    //    element: <EventsAttended />
+    //  }
+    //]
+  },
+  {
+    path: "registration/:eventId",
+    //element: <EventRegistration />,
   }
 ]);
 

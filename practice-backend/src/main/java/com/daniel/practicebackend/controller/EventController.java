@@ -2,6 +2,7 @@ package com.daniel.practicebackend.controller;
 
 import com.daniel.practicebackend.entity.Event;
 import com.daniel.practicebackend.entity.dto.EventRequest;
+import com.daniel.practicebackend.entity.dto.EventRequestIds;
 import com.daniel.practicebackend.service.EventService;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,11 @@ public class EventController {
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable Long id) {
         return eventService.getEvent(id);
+    }
+
+    @PostMapping("/batch")
+    public List<Event> getEventsById(@RequestBody EventRequestIds request) {
+        return eventService.getEventsByIds(request);
     }
 
     @GetMapping

@@ -2,6 +2,7 @@ package com.daniel.practicebackend.service;
 
 import com.daniel.practicebackend.entity.Event;
 import com.daniel.practicebackend.entity.dto.EventRequest;
+import com.daniel.practicebackend.entity.dto.EventRequestIds;
 import com.daniel.practicebackend.repository.EventRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,10 @@ public class EventService {
         return eventRepository.findAll();
     }
 
+    public List<Event> getEventsByIds(EventRequestIds request) {
+        return eventRepository.findAllById(request.ids());
+    }
+
     public Event updateEvent(Long id, EventRequest request) {
         Event event = getEvent(id);
         
@@ -52,6 +57,4 @@ public class EventService {
         Event event = getEvent(id);
         eventRepository.delete(event);
     }
-
-
 }

@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { HomePage } from './pages/Home.page';
 import { Events } from './pages/Events.page';
 import { Students } from './pages/Students.page';
+import { EventAttendees } from './pages/EventAttendees.page';
 
 const router = createBrowserRouter([
   {
@@ -11,12 +12,10 @@ const router = createBrowserRouter([
   {
     path: "events",
     element: <Events />,
-    //children: [
-    //  {
-    //    path: "attendees",
-    //    element: <EventAttendees />
-    //  }
-    //]
+  },
+  {
+    path: "events/:eventId",
+    element: <EventAttendees />
   },
   {
     path: "students",

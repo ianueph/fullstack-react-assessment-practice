@@ -2,6 +2,7 @@ package com.daniel.practicebackend.controller;
 
 import com.daniel.practicebackend.entity.Student;
 import com.daniel.practicebackend.entity.dto.StudentRequest;
+import com.daniel.practicebackend.entity.dto.StudentRequestIds;
 import com.daniel.practicebackend.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,11 @@ public class StudentController {
     @GetMapping
     public List<Student> getStudents() {
         return studentService.getStudents();
+    }
+
+    @PostMapping("/batch")
+    public List<Student> getStudentsById(@RequestBody StudentRequestIds request) {
+        return studentService.getStudentsById(request);
     }
 
     @PutMapping("/{id}")

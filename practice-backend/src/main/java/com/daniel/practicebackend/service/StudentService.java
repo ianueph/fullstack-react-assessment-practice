@@ -2,6 +2,7 @@ package com.daniel.practicebackend.service;
 
 import com.daniel.practicebackend.entity.Student;
 import com.daniel.practicebackend.entity.dto.StudentRequest;
+import com.daniel.practicebackend.entity.dto.StudentRequestIds;
 import com.daniel.practicebackend.repository.StudentRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,10 @@ public class StudentService {
 
     public List<Student> getStudents() {
         return studentRepository.findAll();
+    }
+
+    public List<Student> getStudentsById(StudentRequestIds request) {
+        return studentRepository.findAllById(request.ids());
     }
 
     public Student updateStudent(Long id, StudentRequest request) {
